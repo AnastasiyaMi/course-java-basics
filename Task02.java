@@ -1,34 +1,45 @@
-package com.rakovets.course.javabasics.practice.conditionalstatements;
+package com.rakovets.course.javabasics.practice.loops;
 
+import com.sun.source.util.SourcePositions;
+
+import javax.sql.rowset.serial.SQLOutputImpl;
 import java.util.Scanner;
 
 /**
- * Разработать программу для desktop приложения:
- * которая выведет приветствии для пользователя в зависимости от времени суток.
- * Известно:
+ * Разработать программу для табличного процессора:
+ * Программа генерирует номера строк при создании таблицы. Известно:
  *
- * @param hour - текущее значение часов (от 0 до 23)
- * @return приветствие согласно шаблону 'Good morning/day/evening/night'
+ * @param rows            количество строк в таблице
+ * @param headerRowEnable имеет ли таблица строку-заголовок 'true'/'false', если имеет, то для первой строки не нужно
+ *                        генерировать номер
+ * @author Dmitry Rakovets
+ * @version 1.0
+ * @return номера строк, где каждый номер на новой строке
  */
 public class Task02 {
     public static void main(String[] args) {
-        //FIXME
         // Ввод данных осуществляется в Console, для проверки различных вариантов входных параметров
+        Scanner scanner = new Scanner(System.in);
 
         // Код необходимый для тестирования, не изменять
-        Scanner scanner = new Scanner(System.in);
-        int hour = (args.length != 1) ? scanner.nextInt() : Integer.parseInt(args[0]);
-        if (hour > 3 && hour < 6) {
-            System.out.println("Good night");
-        } else if (hour >= 6 && hour < 12) {
-            System.out.println("Good morning");
-        } else if (hour > 11 && hour < 17) {
-            System.out.println("Good day");
-        } else if (hour > 16 && hour < 24) {
-            System.out.println("Good evening");
-        } else if (hour > 23 || hour < 4) {
-            System.out.println("Good night");
+        int rows = (args.length != 2) ? scanner.nextInt() : Integer.parseInt(args[0]);
+        boolean headerRowEnable = (args.length != 2) ? scanner.nextBoolean() : Boolean.parseBoolean(args[1]);
+
+        if (headerRowEnable) {
+            System.out.println();
+            for (int i = 1; i < rows; i++) {
+                System.out.print(i);
+                if (i != rows - 1) {
+                    System.out.println();
+                }
+            }
+        } else {
+            for (int a = 1; a <= rows; a++) {
+                System.out.print(a);
+                if (a != rows) {
+                    System.out.println();
+                }
+            }
         }
     }
-
 }
