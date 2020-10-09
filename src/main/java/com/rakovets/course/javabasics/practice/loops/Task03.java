@@ -1,5 +1,6 @@
 package com.rakovets.course.javabasics.practice.loops;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -22,9 +23,15 @@ public class Task03 {
         double depositAmount = (args.length != 3 ? scanner.nextDouble() : Double.parseDouble(args[0]));
         double annualDepositPercent = (args.length != 3 ? scanner.nextDouble() : Double.parseDouble(args[1]));
         int depositTerm = (args.length != 3 ? scanner.nextInt() : Integer.parseInt(args[2]));
+        int year = 1;
+        while ( year <= depositTerm ) {
 
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+            double profit = depositAmount * annualDepositPercent / 100;
+            depositAmount = depositAmount + profit;
+            year++;
+        }
+            String result = String.format (Locale.ROOT,"%.2f", depositAmount);
+            System.out.println(result);
+
     }
 }
