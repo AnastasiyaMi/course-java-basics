@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.conditionalstatements;
 
+import org.w3c.dom.ranges.Range;
+
 import java.util.Scanner;
 
 /**
@@ -25,9 +27,17 @@ public class Task11 {
         // Код необходимый для тестирования, не изменять
         Scanner scanner = new Scanner(System.in);
         char letter = (args.length != 1) ? scanner.next().charAt(0) : args[0].charAt(0);
+        String digits;
+        if (letter >= 'а' && letter <= 'я' || letter >= 'А' && letter <= 'Я') {
+            System.out.println("cyrillic");
+        } else if (letter >= 'a' && letter <= 'z' || letter >= 'A' && letter <= 'Z') {
+            System.out.println("latin");
+        } else if (Character.isDigit(letter)) {
+            System.out.println("digit");
+        } else {
+            System.out.println("undefined");
+        }
 
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
     }
+
 }

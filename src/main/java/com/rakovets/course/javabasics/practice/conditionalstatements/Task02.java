@@ -18,9 +18,17 @@ public class Task02 {
         // Код необходимый для тестирования, не изменять
         Scanner scanner = new Scanner(System.in);
         int hour = (args.length != 1) ? scanner.nextInt() : Integer.parseInt(args[0]);
-
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        if (hour > 3 && hour < 6) {
+            System.out.println("Good night");
+        } else if (hour >= 6 && hour < 12) {
+            System.out.println("Good morning");
+        } else if (hour > 11 && hour < 17) {
+            System.out.println("Good day");
+        } else if (hour > 16 && hour < 24) {
+            System.out.println("Good evening");
+        } else if (hour > 23 || hour < 4) {
+            System.out.println("Good night");
+        }
     }
+
 }

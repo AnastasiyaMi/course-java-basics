@@ -19,9 +19,52 @@ public class Task01 {
         // Код необходимый для тестирования, не изменять
         Scanner scanner = new Scanner(System.in);
         int positionPlayerByDamage = (args.length != 1) ? scanner.nextInt() : Integer.parseInt(args[0]);
-
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        switch ( positionPlayerByDamage ) {
+            case 1:
+                System.out.println ("true");
+                break;
+            case 2:
+                System.out.println ("true");
+                break;
+            case 3:
+                System.out.println ("true");
+                break;
+            case 4:
+                System.out.println ("true");
+                break;
+            case 5:
+                System.out.println ("true");
+                break;
+            case 6:
+                System.out.println ("false");
+                break;
+            case 7:
+                System.out.println ("false");
+                break;
+            case 8:
+                System.out.println ("false");
+                break;
+            case 9:
+                System.out.println ("false");
+                break;
+            case 10:
+                System.out.println ("false");
+                break;
+            case 11:
+                System.out.println ("false");
+                break;
+            case 12:
+                System.out.println ("false");
+                break;
+            case 13:
+                System.out.println ("false");
+                break;
+            case 14:
+                System.out.println ("false");
+                break;
+            case 15:
+                System.out.println ("false");
+                break;
+        }
     }
 }

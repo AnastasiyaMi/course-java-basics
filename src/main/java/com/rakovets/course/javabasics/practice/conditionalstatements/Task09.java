@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.conditionalstatements;
 
+import javax.swing.*;
+import java.net.SocketOption;
 import java.util.Scanner;
 
 /**
@@ -21,9 +23,8 @@ public class Task09 {
         int numberFloors = (args.length != 3) ? scanner.nextInt() : Integer.parseInt(args[0]);
         int numberApartmentsPerFloor = (args.length != 3) ? scanner.nextInt() : Integer.parseInt(args[1]);
         int apartmentNumber = (args.length != 3) ? scanner.nextInt() : Integer.parseInt(args[2]);
-
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        int porch = (apartmentNumber -1) / (numberFloors * numberApartmentsPerFloor) + 1;
+        int floor = ((apartmentNumber - 1) % (numberFloors * numberApartmentsPerFloor)) / numberApartmentsPerFloor + 1;
+        System.out.println ("Porch: " + porch + ". " + "Floor: " + floor);
     }
 }
