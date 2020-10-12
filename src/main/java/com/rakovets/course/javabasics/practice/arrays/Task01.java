@@ -2,6 +2,8 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.util.Arrays;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками только по одному предмету
@@ -28,10 +30,11 @@ public class Task01 extends StandardInputTask {
      * @return средняя арифметическая отметка
      */
     static double getAverageMark(int[] marks) {
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используя параметры метода
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0.0;
+        double result = 0;
+        for (int d : marks) {
+            result += d;
+        }
+        return Math.round(result / marks.length * 100.0) / 100.0;
     }
 
     /**
@@ -41,10 +44,15 @@ public class Task01 extends StandardInputTask {
      * @return минимальная отметка
      */
     static int getMinMark(int[] marks) {
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используя параметры метода
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
+        int min;
+        min = marks[0];
+        for (int mark : marks) {
+            if (mark < min) {
+                min = mark;
+            }
+        }
+
+        return min;
     }
 
     /**
@@ -54,10 +62,8 @@ public class Task01 extends StandardInputTask {
      * @return максимальная отметка
      */
     static int getMaxMark(int[] marks) {
-        //TODO
-        // Код, решающий задачу пишем ниже, при этом используя параметры метода
-        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
+        Arrays.sort(marks);
+        return marks[marks.length - 1];
     }
 
     private static int[] nextArray(int countMarks) {
