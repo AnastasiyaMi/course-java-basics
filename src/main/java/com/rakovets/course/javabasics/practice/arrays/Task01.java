@@ -2,6 +2,8 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 
 /**
@@ -34,7 +36,7 @@ public class Task01 extends StandardInputTask {
         for (int d : marks) {
             result += d;
         }
-        return Math.round(result / marks.length * 100.0) / 100.0;
+        return new BigDecimal(result / marks.length).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
