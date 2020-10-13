@@ -1,25 +1,78 @@
-package com.rakovets.course.javabasics.practice.loops;
+package com.rakovets.course.javabasics.practice.arrays;
 
-import java.util.Scanner;
+import com.rakovets.course.javabasics.util.StandardInputTask;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
- * Разработать программу для табличного процессора:
- * Программа генерирует номера строк при создании таблицы. Известно:
+ * Разработать программу для электронного дневника:
+ * которая работает с отметками только по одному предмету
  *
- * @param rows количество строк в таблице
  * @author Dmitry Rakovets
  * @version 1.0
- * @return номера строк, где каждый номер на новой строке
  */
-public class Task01 {
+public class Task01 extends StandardInputTask {
     public static void main(String[] args) {
-        // Ввод данных осуществляется в Console, для проверки различных вариантов входных параметров
-        Scanner scanner = new Scanner(System.in);
+        // Ввод данных осуществляется в Standard Input, для проверки различных вариантов входных параметров
+        int countMarks = INPUT_SCANNER.nextInt();
+        int[] marks = nextArray(countMarks);
 
-        // Код необходимый для тестирования, не изменять
-        int rows = (args.length != 1) ? scanner.nextInt() : Integer.parseInt(args[0]);
-        for (int i = 1; i <= rows; i++) {
-            System.out.println (i);
+        // Вызов методов
+        getAverageMark(marks);
+        getMinMark(marks);
+        getMaxMark(marks);
+    }
+
+    /**
+     * Возвращает средне арифметическую отметку с округлением до 2 знаков.
+     *
+     * @param marks отметки
+     * @return средняя арифметическая отметка
+     */
+    static double getAverageMark(int[] marks) {
+        double result = 0;
+        for (int d : marks) {
+            result += d;
         }
+        return new BigDecimal(result / marks.length).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * Возвращает минимальную отметку.
+     *
+     * @param marks отметки
+     * @return минимальная отметка
+     */
+    static int getMinMark(int[] marks) {
+        int min;
+        min = marks[0];
+        for (int mark : marks) {
+            if (mark < min) {
+                min = mark;
+            }
+        }
+
+        return min;
+    }
+
+    /**
+     * Возвращает максимальну отметку.
+     *
+     * @param marks отметки
+     * @return максимальная отметка
+     */
+    static int getMaxMark(int[] marks) {
+        Arrays.sort(marks);
+        return marks[marks.length - 1];
+    }
+
+    private static int[] nextArray(int countMarks) {
+        int[] marks = new int[countMarks];
+        for (int i = 0; i < countMarks; i++) {
+            marks[i] = INPUT_SCANNER.nextInt();
+        }
+        return marks;
     }
 }

@@ -1,45 +1,111 @@
-package com.rakovets.course.javabasics.practice.loops;
+package com.rakovets.course.javabasics.practice.arrays;
 
-import com.sun.source.util.SourcePositions;
+import com.rakovets.course.javabasics.util.StandardInputTask;
 
-import javax.sql.rowset.serial.SQLOutputImpl;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
- * Разработать программу для табличного процессора:
- * Программа генерирует номера строк при создании таблицы. Известно:
+ * Разработать программу для электронного дневника:
+ * которая работает с отметками по всем предметам.
  *
- * @param rows            количество строк в таблице
- * @param headerRowEnable имеет ли таблица строку-заголовок 'true'/'false', если имеет, то для первой строки не нужно
- *                        генерировать номер
  * @author Dmitry Rakovets
  * @version 1.0
- * @return номера строк, где каждый номер на новой строке
  */
-public class Task02 {
+public class Task02 extends StandardInputTask {
     public static void main(String[] args) {
-        // Ввод данных осуществляется в Console, для проверки различных вариантов входных параметров
-        Scanner scanner = new Scanner(System.in);
+        // Ввод данных осуществляется в Standard Input, для проверки различных вариантов входных параметров
+        int countDisciplines = INPUT_SCANNER.nextInt();
+        int countSemesters = INPUT_SCANNER.nextInt();
+        int[][] marks = nextArray(countDisciplines, countSemesters);
 
-        // Код необходимый для тестирования, не изменять
-        int rows = (args.length != 2) ? scanner.nextInt() : Integer.parseInt(args[0]);
-        boolean headerRowEnable = (args.length != 2) ? scanner.nextBoolean() : Boolean.parseBoolean(args[1]);
+        // Вызов методов
+        getAverageMark(marks);
+        getMinMark(marks);
+        getMaxMark(marks);
+    }
 
-        if (headerRowEnable) {
-            System.out.println();
-            for (int i = 1; i < rows; i++) {
-                System.out.print(i);
-                if (i != rows - 1) {
-                    System.out.println();
-                }
+    /**
+     * Возвращает средне арифметическую отметку за весь период обучения с округлением до 2 знаков.
+     *
+     * @param marks отметки
+     * @return средняя арифметическая отметка
+     */
+    static double getAverageMark(int[][] marks) {
+        //TODO
+        // Код, решающий задачу пишем ниже, при этом используя параметры метода
+        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        int sum = 0;
+
+        for (int[] mark : marks) {
+            for (int i : mark) {
+                sum += i;
             }
-        } else {
-            for (int a = 1; a <= rows; a++) {
-                System.out.print(a);
-                if (a != rows) {
-                    System.out.println();
+        }
+
+        int rows = marks.length;
+        int columns = 0;
+        if (rows != 0) {
+            columns = marks[0].length;
+        }
+
+        double markCount = rows * columns;
+        return new BigDecimal(sum/markCount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * Возвращает минимальную отметку за весь период обучения.
+     *
+     * @param marks отметки
+     * @return минимальная отметка
+     */
+    static int getMinMark(int[][] marks) {
+        //TODO
+        // Код, решающий задачу пишем ниже, при этом используя параметры метода
+        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        int min = marks[0][0];
+        for (int i = 0; i < marks.length; i++) {
+            for (int j = 0; j < marks[i].length; j++) {
+                if (min > marks[i][j]) {
+                    min = marks[i][j];
                 }
             }
         }
+        return min;
+    }
+
+    /**
+     * Возвращает максимальну отметку за весь период обучения.
+     *
+     * @param marks отметки
+     * @return максимальная отметка
+     */
+    static int getMaxMark(int[][] marks) {
+        //TODO
+        // Код, решающий задачу пишем ниже, при этом используя параметры метода
+        // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        int max = marks[0][0];
+        for (int i = 0; i < marks.length; i++) {
+            for (int j = 0; j < marks[i].length; j++) {
+                if (max < marks[i][j]) {
+                    max = marks[i][j];
+                }
+            }
+
+        }
+        return max;
+    }
+
+
+
+
+    private static int[][] nextArray(int countDisciplines, int countSemesters) {
+        int[][] marks = new int[countDisciplines][countSemesters];
+        for (int i = 0; i < countDisciplines; i++) {
+            for (int j = 0; j < countSemesters; j++) {
+                marks[i][j] = INPUT_SCANNER.nextInt();
+            }
+        }
+        return marks;
     }
 }
